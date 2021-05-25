@@ -25,3 +25,17 @@
 #container a {
   text-decoration: none;
 }
+
+.title-size {
+  font-size: 4vw !important;
+}
+
+ion-label {
+  font-size: calc(16px + 0.4vw);
+  color: azure !important;
+}
+
+/* ion-list {
+  width: 80%;
+  //position: absolute;
+} */

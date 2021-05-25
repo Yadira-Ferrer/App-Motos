@@ -1,20 +1,81 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <!-- 1 TOOLBAR -->
+  <ion-toolbar color="tertiary">
     <ion-title>
-      Blank
+      Motociclistas
     </ion-title>
   </ion-toolbar>
+
+  <!-- 2 TOOLBAR -->
+  <ion-toolbar color="">
+    
+    <ion-grid type="list-inset">
+      <ion-row class="ion-align-items-center"> 
+        <ion-col size="6">
+          <!-- CARD DISPONIBLES -->
+          <ion-card>
+            <ion-card-content>
+              <ion-row no-padding>
+                <ion-col size="5" class="ion-text-center">
+                  <ion-card-title class="title-size" color="success">{{ motoCount - motoBusy }}</ion-card-title>
+                </ion-col>
+                <ion-col size="7" class="ion-align-self-center">
+                  <ion-label>DISPONIBLES</ion-label>
+                  <p>Motociclistas</p>
+                </ion-col>
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+  
+        </ion-col>
+  
+        <ion-col size="6">
+          <!-- CARD OCUPADOS -->
+          <ion-card>
+            <ion-card-content>
+              <ion-row no-padding>
+                <ion-col size="5" class="ion-text-center">
+                  <ion-card-title class="title-size" color="danger">{{ motoBusy }}</ion-card-title>
+                </ion-col>
+                <ion-col size="7" class="ion-align-self-center">
+                  <ion-label>OCUPADOS</ion-label>
+                  <p>Motociclistas</p>
+                </ion-col>
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+  
+        </ion-col>
+  
+      </ion-row>
+    </ion-grid>
+
+  </ion-toolbar>
+
+
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  
+  <ion-list>
+    <ion-item *ngFor="let ttc of timeTable" no-padding style =" text-align: center;">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+      <ion-label slot="start" position="fixed" style="font-size: larger !important;">{{ ttc.hour }}</ion-label>
+      
+      <ion-label *ngIf='ttc.time !== ""' style="font-size: x-large !important;">
+        <ion-icon slot="start" name="timer-outline" color="tertiary"></ion-icon>
+        {{ ttc.time }}
+      </ion-label>
+
+      <ion-button (click)="assignMoto(ttc)" [color]="ttc.status" slot="end" size="large">
+        <ion-thumbnail>
+          <img src="/assets/moto.svg">
+        </ion-thumbnail>
+      </ion-button>
+
+    </ion-item>
+  </ion-list>
+  
+
+  
 </ion-content>
